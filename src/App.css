@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+body{
+    overflow-x: hidden;
+}
+.loading-dots {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  
+  .loading-dots {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    margin-right: 5px;
+  }
+  
+  .loading-dots span {
+    width: 6px;
+    height: 6px;
+    margin: 2px 0; 
+    background-color: #613B26;
+    border-radius: 50%;
+    animation: infinite 1.5s infinite ease-in-out;
+  }
+  
+  .loading-dots span:nth-child(1) { animation-delay: 0s; }
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+  
+  @keyframes infinite {
+    0%, 100% { opacity: 0.2; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-4px); }
+  }
+  
+
+/* font families */
+/* font-family: "Lora", serif;
+font-family: "Montserrat", serif; */
+nav ul li .active {
+    color: #613B26;
+    border-bottom: #613B26 1px solid;
+    
+  }
+  nav ul li a:hover {
+    color: #613B26;
+  } 
+  nav ul li a {
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+    font-family: "Lora", serif;
+  }
+  @keyframes blink {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  
+  .blinking-circle {
+    background-color:  #BB8E5A ;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+    border: 1px solid #524848;
+    opacity: 0.1;
+  }
+  
+  /* Different speeds for each circle */
+  .blinking-circle:nth-child(1) { animation-duration: 1.5s; }
+  .blinking-circle:nth-child(2) { animation-duration: 2s; }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-marquee {
+    animation: marquee 6s linear infinite;
+    display: flex;
+    width: 500%; 
+  }
+  .parallax {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  .scroller {
+    display: inline-flex;
+    will-change: transform;
+    padding: 0;
+    gap: 0;
+  }
+  
+    
+  
+  
+  
+  
