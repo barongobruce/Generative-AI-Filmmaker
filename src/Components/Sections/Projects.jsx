@@ -25,7 +25,7 @@ export default function Projects() {
       mobileImg: project1Mobile,
       description: "A comprehensive trading binary platform with real-time market analysis and trading tools.",
       technology: "JavaScript + Typescript + CSS",
-      link: "https://barongobruce.github.io/tagoption/",
+      link: "https://tagoption-tan.vercel.app/",
       code: "https://github.com/barongobruce/tagoption",
       dataAos: "zoom-in-up"
     },
