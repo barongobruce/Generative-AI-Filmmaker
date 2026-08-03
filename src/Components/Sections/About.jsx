@@ -1,99 +1,159 @@
-import React from 'react'
-import html from "../../images/html.png";
-import css from "../../images/css.png";
-import js from "../../images/js.png";
-import bootstrap from "../../images/bootstrap.png";
-import react from "../../images/react.png";
-import tailwind from "../../images/tailwind.png";
-import git from "../../images/git.png"
-import github from "../../images/github.png";
-import figma from "../../images/figma.webp"
-import wordpress from "../../images/wordpress.png"
-import nextjs from "../../images/nextjs.png"
-import typescript from "../../images/typescript.png"
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
-AOS.init();
+import "../../styles/Toolkit.css";
 
-const skills = [
-   { src: react, label: "React" },
-  { src: tailwind, label: "Tailwind" },
-   { src: js, label: "JavaScript" },
-  { src: bootstrap, label: "Bootstrap" },
-  { src: html, label: "HTML" },
-  { src: css, label: "CSS" },
-    { src: figma, label: "Figma" },
-  { src: git, label: "Git" },
-  { src: github, label: "Github" },
-  { src: wordpress, label: "Wordpress" },
-   { src: nextjs, label: "NextJs" },
-   { src: typescript, label: "Typescript" },
+// AI Models (LLMs)
+import chatgpt from "../../images/tools/chatgpt.jpg";
+import claude from "../../images/tools/claude.jpg";
+import gemini from "../../images/tools/gemini.jpg";
+import grok from "../../images/tools/grok.jpg";
+
+// Image & Video Generation
+import veo from "../../images/tools/veo.jpg";
+import kling from "../../images/tools/kling.jpg";
+import midjourney from "../../images/tools/midjourney.jpg";
+import leonardo from "../../images/tools/leonardo.webp";
+import runway from "../../images/tools/runway.jpg";
+import seedance from "../../images/tools/seedance.png";
+import sora from "../../images/tools/Sora.webp";
+import nanoBanana from "../../images/tools/banana.jpg";
+
+// Video Production
+import premiere from "../../images/tools/premierpro.jpg";
+import davinci from "../../images/tools/davinci.jpg";
+import capcut from "../../images/tools/capcut.jpg";
+
+// Design
+import photoshop from "../../images/tools/photoshop.jpg";
+import canva from "../../images/tools/canva.jpg";
+import figma from "../../images/tools/figma.jpg";
+
+// Voice
+import elevenlabs from "../../images/tools/elevenlabs.jpg";
+import chatterbox from "../../images/tools/chatterbox.png";
+import studio from "../../images/tools/studio.jpg";
+
+// Research
+import vidiq from "../../images/tools/vidiq.png";
+
+
+const toolkitCategories = [
+  
+
+  {
+    id: "image-video-generation",
+    icon: "✨",
+    label: "Image & Video Generation Tools",
+    tools: [
+      { name: "Google Veo", logo: veo },
+      { name: "Sora", logo: sora },
+      { name: "Nano Banana", logo: nanoBanana },
+      { name: "Kling AI", logo: kling },
+      { name: "Midjourney", logo: midjourney },
+      { name: "Leonardo AI", logo: leonardo },
+      { name: "Runway ML", logo: runway },
+      { name: "Seedance", logo: seedance },
+      { name: "Imagine Grok", logo: grok },
+    ],
+  },
+
+{
+    id: "ai-models",
+    icon: "🤖",
+    label: "Research & Writing Tools",
+    tools: [
+      { name: "ChatGPT", logo: chatgpt },
+      { name: "Claude", logo: claude },
+      { name: "Gemini", logo: gemini },
+      { name: "Grok", logo: grok },
+      { name: "vidIQ", logo: vidiq },
+    ],
+  },
+
+  {
+    id: "video-production",
+    icon: "🎬",
+    label: "Video Editing & Thumbnail creation",
+    tools: [
+      { name: "Adobe Premiere Pro", logo: premiere },
+      { name: "DaVinci Resolve", logo: davinci },
+      { name: "CapCut Pro", logo: capcut },
+      { name: "Adobe Photoshop", logo: photoshop },
+      { name: "Canva Pro", logo: canva },
+      { name: "Figma", logo: figma },
+    ],
+  },
+
+  {
+    id: "voice-audio",
+    icon: "🎙️",
+    label: "Voice Generation Tools",
+    tools: [
+      { name: "ElevenLabs", logo: elevenlabs },
+      { name: "Chatterbox", logo: chatterbox },
+      { name: "Google AI Studio", logo: studio },
+    ],
+  },
 ];
 
-export default function About() {
-  return (
-    <div className='max-w-full overflow-x-hidden items-center  container mx-auto px-3 md:px-16 lg:pt-24 lg:px-24 pt-10 md:pt-16' id='about'>
-      <div className="grid grid-cols-1 md:grid-cols-2 relative gap-x-10 gap-y-6">
 
-        <div className="hidden md:grid grid-cols-3 gap-4 w-full" data-aos="zoom-in-right">
-          {skills.map((skill, index) => (
-            <div key={index} className='bg-white p-4 shadow-xl flex flex-col items-center justify-center'>
-              <img src={skill.src} className="w-10 mb-2" alt={`${skill.label} logo`} />
-              <span className="text-xs font-semibold text-center">{skill.label}</span>
+const About = () => {
+  return (
+    <section className="about-section">
+
+      <div className="about-bg-glow"></div>
+
+      <div className="toolkit-container">
+
+        <div className="toolkit-header">
+          <span>
+            ⚡ MY CREATIVE STACK
+          </span>
+          <h2>
+            Tools Behind The Vision
+          </h2>
+          <p>
+            A combination of artificial intelligence,
+            editing software, and creative platforms
+            used to bring cinematic ideas to life.
+          </p>
+        </div>
+
+        <div className="toolkit-grid">
+          {toolkitCategories.map((category) => (
+            <div
+              className="toolkit-category"
+              key={category.id}
+            >
+              <div className="category-title">
+                <span className="category-icon">
+                  {category.icon}
+                </span>
+                <h3>
+                  {category.label}
+                </h3>
+              </div>
+
+              <div className="tools-grid">
+                {category.tools.map((tool) => (
+                  <div
+                    className="tool-card"
+                    key={tool.name}
+                  >
+                    <img
+                      src={tool.logo}
+                      alt={tool.name}
+                    />
+                    <p>
+                      {tool.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-
-        {/* Marquee for smaller screens */}
-        <div className="relative overflow-x-hidden w-full md:hidden mt-4">
-          <div className="flex animate-marquee whitespace-nowrap gap-4">
-            {[...skills, ...skills].map((skill, index) => (
-              <div key={index} className="flex flex-col items-center bg-white p-3 shadow-xl min-w-[90px] mx-2">
-                <img src={skill.src} className="w-10 mb-1" alt={`${skill.label} logo`} />
-                <span className="text-xs font-semibold text-center">{skill.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className='w-full mt-6 md:mt-0 md:text-left md:ml-auto' data-aos="zoom-in-left">
-          <div className="mb-4 flex items-center gap-x-5">
-            <div className="relative flex items-center mr-3">
-              <span className="blinking-circle absolute w-2 h-2"></span>
-              <span className="blinking-circle absolute w-4 h-4"></span>
-            </div>
-            <h4 className='text-2xl font-bold md:text-start lg:text-start text-center'>About Me</h4>
-          </div>
-          <p className="text-gray-900 text-sm text-start px-3 w-auto md:px-0 leading-loose tracking-wide">
-  I’m a Frontend Developer who loves bringing ideas to life on the web.  
-  I work with HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, and React JS to build clean, 
-  responsive, and user-friendly interfaces.  
-
-  I’ve had the chance to work on different projects, team up with amazing people, and grow through 
-  every challenge. <br/>   
-
-  Right now, I’m leveling up my skills in <strong>software engineering</strong>, and I’m super excited 
-  about creating impact and pushing boundaries in tech.  
-
-  <br/>  
-  <strong>Watch Out For Me!!!</strong>
-</p>
-
-        </div>
-
       </div>
-      {/* Marquee animation style */}
-      <style>
-        {`
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 18s linear infinite;
-        }
-        `}
-      </style>
-    </div>
-  )
-}
+    </section>
+  );
+};
+
+export default About;

@@ -1,140 +1,119 @@
 import React, { useState } from "react";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+const YOUR_EMAIL = "brosnanbarongo@gmail.com"; // Your email is ready here!
 
+export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSending(true);
+    setFormStatus("Sending your message...");
 
-    const phoneNumber = "254710802808";
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${YOUR_EMAIL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New portfolio message from ${formData.name}`,
+          _template: "table",
+          _captcha: "false",
+          Name: formData.name,
+          Email: formData.email,
+          Message: formData.message,
+        }),
+      });
 
-    const whatsappMessage = `Hello Bruce,
+      if (!response.ok) throw new Error("Send failed");
 
-Name: ${formData.name}
-Email: ${formData.email}
-
-Message:
-${formData.message}`;
-
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      whatsappMessage
-    )}`;
-
-    window.open(whatsappURL, "_blank");
-
-    setFormStatus(
-      "Opening WhatsApp... Please review your message and tap Send."
-    );
-
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
-
-    setTimeout(() => {
-      setFormStatus("");
-    }, 4000);
+      setFormStatus("✅ Message sent successfully! I'll reply to you soon.");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      setFormStatus(`❌ Oops! Something went wrong. Please email me directly at ${YOUR_EMAIL}`);
+    } finally {
+      setSending(false);
+      setTimeout(() => setFormStatus(""), 6000);
+    }
   };
 
   return (
-    <div
-      className="max-w-full overflow-x-hidden flex flex-col justify-center items-center px-4"
-      id="contact"
-    >
+    <div className="w-full bg-[#09090b] flex flex-col justify-center items-center px-4 py-24" id="contact">
       {/* Heading */}
-      <div className="mb-0 flex items-center text-center justify-center">
-        <div className="flex items-center justify-center mr-4 mb-3">
-          <span className="blinking-circle absolute w-1 h-1"></span>
-          <span className="blinking-circle absolute w-2 h-2"></span>
-          <span className="blinking-circle absolute w-3 h-3"></span>
+      <div className="mb-12 flex items-center text-center justify-center flex-col">
+        <div className="flex items-center justify-center mb-4 relative h-6 w-12">
+          <span className="blinking-circle absolute w-2 h-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></span>
+          <span className="blinking-circle absolute w-4 h-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></span>
         </div>
-
-        <h2 className="text-start md:text-center text-2xl font-bold mb-12 mt-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-white">
           Wanna Build a Project?
         </h2>
       </div>
 
       {/* Contact Form */}
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold text-start mb-6">
-          Reach Out To Me
-        </h2>
+      <div className="bg-[#18181b] border border-white/10 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-full max-w-md">
+        <h2 className="text-2xl font-bold text-white mb-6">Reach Out To Me</h2>
 
         {formStatus && (
-          <p className="text-center mb-4 text-green-600">{formStatus}</p>
+          <p className="text-center mb-4 text-[#8b5cf6] bg-[#8b5cf6]/10 p-3 rounded-lg border border-[#8b5cf6]/30 text-sm">
+            {formStatus}
+          </p>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-500">
-              Name
-            </label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 w-full p-2 border border-[#DFC6C5] rounded-lg focus:ring-[#613B26] focus:border-[#613B26] outline-none"
+              className="w-full p-3 bg-[#09090b] border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-[#8b5cf6] outline-none transition placeholder-gray-600"
               placeholder="Enter your name"
               required
             />
           </div>
 
-          {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 w-full p-2 border border-[#DFC6C5] rounded-lg focus:ring-[#613B26] focus:border-[#613B26] outline-none"
+              className="w-full p-3 bg-[#09090b] border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-[#8b5cf6] outline-none transition placeholder-gray-600"
               placeholder="Enter your email"
               required
             />
           </div>
 
-          {/* Message */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Message
-            </label>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Message</label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="mt-1 w-full p-2 text-sm font-sm border border-[#DFC6C5] rounded-lg focus:ring-[#613B26] focus:border-[#613B26] outline-none h-28"
+              className="w-full p-3 bg-[#09090b] border border-white/10 text-white rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-[#8b5cf6] outline-none transition h-32 placeholder-gray-600"
               placeholder="Write your message here..."
               required
             ></textarea>
           </div>
 
-          {/* Submit */}
-          <div className="text-start text-sm font-sm">
-            <button
-              type="submit"
-              className="bg-[#613B26] text-white font-normal text-md px-5 py-2 rounded-lg hover:bg-transparent hover:text-[#613B26] hover:border hover:border-[#BB8E5A] transition duration-300"
-            >
-              Message Me on WhatsApp
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={sending}
+            className="w-full bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-white font-semibold py-3.5 rounded-xl hover:brightness-110 hover:shadow-[0_10px_30px_rgba(59,130,246,0.3)] transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {sending ? "Sending..." : "Send Message"}
+          </button>
         </form>
       </div>
     </div>

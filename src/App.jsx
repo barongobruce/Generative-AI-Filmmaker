@@ -4,6 +4,7 @@ import About from "./Components/Sections/About";
 import Projects from "./Components/Sections/Projects";
 import Contact from "./Components/Sections/Contact";
 import Footer from "./Components/Sections/Footer";
+import WhatsAppButton from "./Components/WhatsAppButton";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
       </section>
 
       <Footer />
+
+      <WhatsAppButton />
     </>
   );
 }
