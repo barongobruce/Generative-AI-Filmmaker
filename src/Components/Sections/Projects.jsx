@@ -246,11 +246,10 @@ const Projects = () => {
               {isVideoFile(activeFilm.link) ? (
                 <video src={activeFilm.link} controls autoPlay />
               ) : (
-                <iframe
+                                <iframe
                   src={activeFilm.link}
                   title={activeFilm.title}
                   allow="autoplay; fullscreen"
-                  allowFullScreen
                 />
               )}
             </div>
