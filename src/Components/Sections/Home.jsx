@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="relative w-full bg-[#09090b] max-w-full overflow-x-hidden pt-24 md:pt-28 px-5 md:px-16 lg:px-28 min-h-screen flex items-center"
+      className="relative w-full bg-[#09090b] max-w-full overflow-x-hidden pt-6 md:pt-10 px-5 md:px-16 lg:px-28 min-h-screen flex items-center"
     >
       {/* Background Blobs matching Projects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
